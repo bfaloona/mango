@@ -45,7 +45,7 @@ module Mango
   #
   # ### The Body
   #
-  # The body of a content file can be written in many human and designer friendly formats.  It's the
+  # The body of a content file can be written in many writer and designer friendly formats.  It's the
   # content file's extension that determines the format, and therefore, the template engine used to
   # convert the body into markup like HTML.  For a list of supported content page template engines,
   # and their formats, see `Mango::ContentPage::TEMPLATE_ENGINES`.
