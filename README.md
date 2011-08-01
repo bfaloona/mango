@@ -216,7 +216,69 @@ Now that the newly generated Mango website is running, here's how the website is
 WRITING
 -------
 
-Coming soon.  [Patches are welcome](https://github.com/ryansobol/mango/issues#issue/2).
+In a newly generated Mango website, there is a single content page -- `content/index.erb`.  A content page contains **a body** and possibly **a header**.
+
+    $ cat content/index.erb
+    ---
+    title: Congratulations!
+    ---
+    <h1><%= page.title %></h1>
+    
+    <h2>You did it!</h2>
+
+There are a few important facets of the above example and content pages in general.
+
+  1. A content page is stored as file on disk.  Here, the file name is `index.erb`.
+  2. The header is defined first, embedded within triple-dashed ("---") dividers.
+  3. The body comes second, nestled comfortably below the header.
+  4. The header is composed of key-value attribute pairs in [YAML](http://www.yaml.org/) format.
+  5. The file's extension signals that the body should treated as ERB.
+
+### The Header
+
+The header is composed of key-value attribute pairs in [YAML](http://www.yaml.org/) format.  Header attributes are accessible within the content page's body and its view template via the `page` local variable.
+
+In the above example, the `title` attribute is accessed inside the ERB body like this:
+
+    <h1><%= page.title %></h1>
+
+### The Body
+
+The body of a content page can be written in many writer and designer friendly formats.  It's the content file's extension that determines the format, and therefore, the template engine used to convert the body into markup like HTML.
+
+Mango supports the following content formats:
+
+  * [Markdown](http://daringfireball.net/projects/markdown/basics)
+  * [Haml](http://haml-lang.com/tutorial.html)
+  * [ERB](http://ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html)
+  * [Liquid](https://github.com/tobi/liquid/wiki)
+
+The raw data and unrendered body of a content page is accessible inside the ERB body like this:
+
+    <p><%= page.data %></p>
+    <p><%= page.body %></p>
+
+And the rendered content of a content page, which is only accessible inside its view template, like this:
+
+    <p><%= page.content %></p>
+
+### The View Attribute and Template
+
+Each `ContentPage` instance has a `view` attribute, even if one is not explicitly declared in
+the content file.  This attribute is essential as it guides the `Mango::Application` to render
+the correct view template file.  The default view template file name is defined by
+`Mango::ContentPage::DEFAULT_ATTRIBUTES`.
+
+When declaring an explicit view template, the relative file name is required.  For example,
+given the following content page:
+
+    ---
+    view: blog.haml
+    ---
+
+The `Mango::Application` will attempt to render the content page within the `blog.haml` view
+template if it exists in the `Mango::Application.settings.views` directory.  The supported view
+template engines are defined by `Mango::Application::VIEW_TEMPLATE_ENGINES`.
 
 THEMING
 -------
