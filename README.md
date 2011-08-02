@@ -258,7 +258,7 @@ Mango supports the following content formats:
 There are a few header attributes that are automatically inserted into every content page.
 
 | Attribute | Description                    |
-----------------------------------------------
+|--------------------------------------------|
 | data      | The raw data of a content page |
 | body      | The pre-rendered body          |
 
