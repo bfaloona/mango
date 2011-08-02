@@ -50,8 +50,8 @@ module Mango
   # and their formats, see `Mango::ContentPage::TEMPLATE_ENGINES`.
   #
   # Each `ContentPage` instance is passed into their body and view templates as the `page` local
-  # variable.  For example, this is how to access the raw data, pre-rendered body, and rendered
-  # content of a content page inside an ERB template:
+  # variable.  For example, this is how to access the complete data, pre-rendered body, and
+  # rendered content of a content page inside an ERB template:
   #
   #     <p><%= page.data %></p>
   #     <p><%= page.body %></p>

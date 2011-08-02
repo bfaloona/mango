@@ -236,7 +236,7 @@ The above example highlights the key facets of a content page.
 
 ### The Header
 
-The header is composed of key-value attribute pairs in [YAML](http://www.yaml.org/) format.  Header attributes are accessible within the content page's body and its view template via the `page` local variable.
+The header is composed of key-value attribute pairs in [YAML](http://www.yaml.org/) format.  Header attributes are avaiable within the content page's body and its view template via the `page` local variable.
 
 In the previous example, the `title` attribute is accessed within the content page's body like this:
 
@@ -244,7 +244,7 @@ In the previous example, the `title` attribute is accessed within the content pa
 
 ### The Body
 
-The body of a content page supports many writer and designer friendly formats.  The content file's extension that determines the body's format.
+The body of a content page supports many writer and designer friendly formats.  The content file's extension determines the body's format.
 
 Mango supports the following content formats:
 
@@ -255,39 +255,30 @@ Mango supports the following content formats:
 
 ### Automatic Attributes
 
-There are a few header attributes that are automatically inserted into every content page.
+A handful of attributes are automatically inserted into every content page and cannot be altered in the header.
 
-| Attribute | Description                    |
-|--------------------------------------------|
-| data      | The raw data of a content page |
-| body      | The pre-rendered body          |
-
-The content page's raw data and pre-rendered body are accessible via `data` and `body` attributes respectively:
+The content page's complete data and pre-rendered body are accessed via the `data` and `body` attributes respectively:
 
     <p><%= page.data %></p>
     <p><%= page.body %></p>
 
-And the rendered content of a content page, which is only accessible inside its view template, like this:
+And the content page's rendered body, which is **only** available inside a view template, is accessed via the `content` attribute:
 
     <p><%= page.content %></p>
 
 ### The View Attribute and Template
 
-Each `ContentPage` instance has a `view` attribute, even if one is not explicitly declared in
-the content file.  This attribute is essential as it guides the `Mango::Application` to render
-the correct view template file.  The default view template file name is defined by
-`Mango::ContentPage::DEFAULT_ATTRIBUTES`.
+The `view` attribute is also automatically inserted into every content.  Unlike the other automatic attributes, it can be altered in the header.
 
-When declaring an explicit view template, the relative file name is required.  For example,
-given the following content page:
+This `view` attribute guides the Mango website to render the correct view template file.  The default view template file name is `page.haml`.
+
+When declaring an explicit view template in the header, the relative file name is required.  For example, given the following content page:
 
     ---
     view: blog.haml
     ---
 
-The `Mango::Application` will attempt to render the content page within the `blog.haml` view
-template if it exists in the `Mango::Application.settings.views` directory.  The supported view
-template engines are defined by `Mango::Application::VIEW_TEMPLATE_ENGINES`.
+Mango attempts to render the `blog.haml` view template if it exists in the view directory.  We will explore view templates and view directories in the next section.
 
 THEMING
 -------
