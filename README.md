@@ -331,6 +331,7 @@ The above example highlights the key facets of rendering a content page.
   3. Mango renders the content page as an ERB file.
   4. Mango locates the `page.haml` view template in the `themes/default/views` directory.
   5. Mango renders the view template as a Haml file.
+  6. The rendered view template is returned as the response.
 
 We will explore view templates and view directories in the next section.
 
