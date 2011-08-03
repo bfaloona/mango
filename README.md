@@ -253,7 +253,7 @@ Mango supports the following body formats:
 
 ### The Data and Body Attributes
 
-A handful of attributes are automatically inserted into every content page and **cannot** be altered in the header.  The content page's data and pre-rendered body are accessed via the `data` and `body` attributes respectively.
+A handful of attributes are automatically inserted into every content page and **cannot** be altered in the header.  Two such attributes are `data` and `body` which contain a content page's data and pre-rendered body respectively.
 
 For example, given the following content page:
 
@@ -281,7 +281,7 @@ and calling `<%= page.body %>` would yield:
 
 ### The Content Attribute
 
-The content page's **rendered** body is accessed via the `content` attribute.  Like the `data` and `body` attributes, the `content` attribute is automatically inserted into every content page and **cannot** be altered in the header.  However, the `content` attribute is **only** available inside a view template.  
+The `content` attribute contains the **rendered** body of a content page.  Like the `data` and `body` attributes, the `content` attribute is automatically inserted into every content page and **cannot** be altered in the header.  The rendered body contained within the `content` attribute is **only** available inside a view template.
 
 For example, given the following content page:
 
@@ -300,16 +300,37 @@ Calling `<%= page.content %>` in a view template would yield:
 
 ### The View Attribute and Template
 
-When a content page is requested, the `view` attribute instructs Mango to render a view template file.  The default `view` template file is `page.haml` and can be customized in the header.
+The `view` attribute contains the file name, or relative path, of a view template.  When a content page is requested, its view template is rendered and returned as the response.  Every contend page's default view template is `page.haml` but this can be altered in the header.
 
-For example, given the following content page:
+For example, given the following content page called `content/index.erb`:
 
     ---
-    view: blog/post.haml
+    title: Congratulations!
     ---
-    <h1>New Blog Post</h1>
+    <h1><%= page.title %></h1>
+    
+    <h2>You did it!</h2>
 
-Mango attempts to render the `post.haml` view template if it exists in the `blog` directory.  The view template file extension expects to be treated as Haml file while the content page is an ERB file.
+and given the following view template called `themes/default/views/page.haml`:
+
+    %div
+      = page.content
+
+Requesting `/index` would yield:
+
+    <div>
+      <h1>Congratulations!</h1>
+      
+      <h2>You did it!</h2>
+    </div>
+
+The above example highlights the key facets of rendering a content page.
+
+  1. Mango receives the request to `/index`.
+  2. Mango maps the request to the `content/index.erb` content page.
+  3. Mango renders the content page as an ERB file.
+  4. Mango locates the `page.haml` view template in the `themes/default/views` directory.
+  5. Mango renders the view template as a Haml file.
 
 We will explore view templates and view directories in the next section.
 
