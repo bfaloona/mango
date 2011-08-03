@@ -216,7 +216,7 @@ Now that the newly generated Mango website is running, here's how the website is
 WRITING
 -------
 
-The Mango website generator produces a single content page -- `content/index.erb`.  A content page contains **a body** and optionally **a header**.
+The Mango website generator produces a single content page -- `content/index.erb`.  A content page contains two optional components -- **a body** and **a header**.
 
     $ cat content/index.erb
     ---
