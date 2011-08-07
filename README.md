@@ -226,10 +226,10 @@ The Mango website generator produces a single content page -- `content/index.erb
     
     <h2>You did it!</h2>
 
-The above example highlights the key facets of authoring a content page.
+The above example highlights the key facets of a content page.
 
   1. A content page is stored as a file in the `content` directory.  Here, the file name is `index.erb`.
-  2. The header, if defined, comes first and is embedded within triple-dashed (`---`) dividers.
+  2. The header, if defined, comes first and is embedded within triple-dashed `---` dividers.
   3. The body comes second, nestled comfortably below the header.
   4. The header is composed of key-value attribute pairs in [YAML](http://www.yaml.org/) format.
   5. The file's extension signals that the body should be treated as ERB.
@@ -297,43 +297,6 @@ Calling `<%= page.content %>` in a view template would yield:
     <h1>Congratulations!</h1>
     
     <h2>You did it!</h2>
-
-### The View Attribute and Template
-
-The `view` attribute contains the file name, or relative path, of a view template.  When a content page is requested, its view template is rendered and returned as the response.  Every contend page's default view template is `page.haml` but this can be altered in the header.
-
-For example, given the following content page called `content/index.erb`:
-
-    ---
-    title: Congratulations!
-    ---
-    <h1><%= page.title %></h1>
-    
-    <h2>You did it!</h2>
-
-and given the following view template called `themes/default/views/page.haml`:
-
-    %div
-      = page.content
-
-Requesting `/index` would yield:
-
-    <div>
-      <h1>Congratulations!</h1>
-      
-      <h2>You did it!</h2>
-    </div>
-
-The above example highlights the key facets of rendering a content page.
-
-  1. Mango receives the request to `/index`.
-  2. Mango maps the request to the `content/index.erb` content page.
-  3. Mango renders the content page as an ERB file.
-  4. Mango locates the `page.haml` view template in the `themes/default/views` directory.
-  5. Mango renders the view template as a Haml file.
-  6. The rendered view template is returned as the response.
-
-We will explore view templates and view directories in the next section.
 
 THEMING
 -------
