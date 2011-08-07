@@ -226,7 +226,7 @@ The Mango website generator produces a single content page -- `content/index.erb
     
     <h2>You did it!</h2>
 
-The above example highlights the key facets of a content page.
+The above example highlights the key facets of writing a content page.
 
   1. A content page is stored as a file in the `content` directory.  Here, the file name is `index.erb`.
   2. The header, if defined, comes first and is embedded within triple-dashed `---` dividers.

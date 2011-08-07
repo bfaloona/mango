@@ -8,7 +8,7 @@ module Mango
   # user-generated data into markup like HTML.  It accomplishes this task by utilizing a variety of
   # content engines.
   #
-  # A `ContentPage` file contains **a body** and optionally **a header**.
+  # A `ContentPage` file contains two optional components -- **a body** and **a header**.
   #
   # ### Example content file
   #
@@ -24,11 +24,11 @@ module Mango
   #     until there is no Mango left.
   #     Not even for Mango!
   #
-  # Mangos aside, the above example highlights the key facets of writing content page.
+  # Mangos aside, the above example highlights the key facets of writing a content page.
   #
   # 1. A content page is stored as a file in the `content` directory  Here, the file name is
   #    `mango_poem.markdown`.
-  # 2. The header, if defined, comes first and is embedded within triple-dashed ("---") dividers.
+  # 2. The header, if defined, comes first and is embedded within triple-dashed `---` dividers.
   # 3. The body comes second, nestled comfortably below the header.
   # 4. The header is composed of key-value attribute pairs in [YAML](http://www.yaml.org/) format.
   # 5. The file's extension signals that the body should be treated as Markdown.
